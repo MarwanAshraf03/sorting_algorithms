@@ -7,6 +7,8 @@ void insertion_sort_list(listint_t **list)
 {
 	listint_t *temp1, *temp2, *temp3, *temp4;
 
+	if (!list || !*list || !(*list)->next)
+		return;
 	temp1 = (*list);
 	while (temp1)
 	{
@@ -62,4 +64,3 @@ void swap_b(listint_t *temp2)
 		temp3->prev = temp2;
 	}
 }
-
