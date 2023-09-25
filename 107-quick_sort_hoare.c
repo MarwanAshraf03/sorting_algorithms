@@ -39,7 +39,7 @@ void quick_sort_hoare(int *array, size_t size)
 int partition_hoare(int *array, size_t size, int lbound, int hbound)
 {
 	int pivot = array[((hbound - lbound) / 2) + lbound];
-	int j = hbound + 1, i = lbound - 1;
+	size_t j = hbound, i = lbound;
 
 	while (1)
 	{
@@ -52,6 +52,7 @@ int partition_hoare(int *array, size_t size, int lbound, int hbound)
 		else
 			return (j);
 	}
+	return (i);
 }
 /**
  * qq_hoare - quick sort algorithm
