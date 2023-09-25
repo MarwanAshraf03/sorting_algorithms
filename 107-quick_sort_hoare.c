@@ -10,14 +10,10 @@ void swap(int *array, size_t size, int *first, int *second)
 {
 	int temp;
 
-	if (*first != *second)
-	{
-		temp = *first;
-		*first = *second;
-		*second = temp;
-		print_array(array, size);
-	}
-
+	temp = *first;
+	*first = *second;
+	*second = temp;
+	print_array(array, size);
 }
 /**
  * quick_sort_hoare - sort array using quick sort algorithm
@@ -26,6 +22,8 @@ void swap(int *array, size_t size, int *first, int *second)
 */
 void quick_sort_hoare(int *array, size_t size)
 {
+	if (size < 2)
+		return;
 	qq_hoare(array, size, 0, size - 1);
 }
 /**
@@ -47,12 +45,10 @@ int partition_hoare(int *array, size_t size, int lbound, int hbound)
 			i++;
 		while (array[j] > pivot)
 			j--;
-		if (i < j)
-			swap(array, size, &array[i], &array[j]);
-		else
-			return (j);
+		if (i >= j)
+			return (i);
+		swap(array, size, &array[i], &array[j]);
 	}
-	return (i);
 }
 /**
  * qq_hoare - quick sort algorithm
@@ -65,7 +61,7 @@ void qq_hoare(int *array, size_t size, int lbound, int hbound)
 {
 	int pivot;
 
-	if ((lbound < hbound) && (lbound >= 0) && (hbound >= 0))
+	if (lbound < hbound)
 	{
 		pivot = partition_hoare(array, size, lbound, hbound);
 		qq_hoare(array, size, lbound, pivot);
