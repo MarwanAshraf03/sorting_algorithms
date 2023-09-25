@@ -9,6 +9,26 @@ void quick_sort(int *array, size_t size)
 	qq(array, size, 0, size - 1);
 }
 /**
+ * swap - swaps two numbers
+ * @first: first number
+ * @second: second number
+ * @array: array to be sorted
+ * @size: size of the array to be sorted
+*/
+void swap(int *array, size_t size, int *first, int *second)
+{
+	int temp;
+
+	if (*first != *second)
+	{
+		temp = *first;
+		*first = *second;
+		*second = temp;
+		print_array(array, size);
+	}
+
+}
+/**
  * partition - partition array using Lomuto parition scheme
  * @array: array to be partitioned
  * @size: size of the array to be partitioned
@@ -18,25 +38,13 @@ void quick_sort(int *array, size_t size)
 */
 int partition(int *array, size_t size, int lbound, int hbound)
 {
-	int pivot = array[hbound], temp_piv_idx = lbound - 1, j, temp;
+	int pivot = array[hbound], j, i = lbound - 1;
 
 	for (j = lbound; j < hbound; j++)
-	{
-		if (array[j] <= pivot)
-		{
-			temp_piv_idx++;
-			temp = array[temp_piv_idx];
-			array[temp_piv_idx] = array[j];
-			array[j] = temp;
-			print_array(array, size);
-		}
-	}
-	temp_piv_idx++;
-	temp = array[temp_piv_idx];
-	array[temp_piv_idx] = array[hbound];
-	array[hbound] = temp;
-	print_array(array, size);
-	return (temp_piv_idx);
+		if (array[j] < pivot)
+			swap(array, size, &array[j], &array[++i]);
+	swap(array, size, &array[j], &array[++i]);
+	return (i);
 }
 /**
  * qq - quick sort algorithm
