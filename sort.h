@@ -28,5 +28,8 @@ int partition_hoare(int *array, size_t size, int lbound, int hbound);
 void qq(int *array, size_t size, int lbound, int hbound);
 void qq_hoare(int *array, size_t size, int lbound, int hbound);
 void swap(int *array, size_t size, int *first, int *second);
+
+void counting_sort(int *array, size_t size);
+
 #endif
 
