@@ -9,12 +9,12 @@ void counting_sort(int *array, size_t size)
 	int *count, *sorted = malloc(sizeof(int) * size), j, max = array[0];
 	size_t i;
 
-	if (size < 2)
-		return;
 	for (i = 1; i < size; i++)
 		if (array[i] > max)
 			max = array[i];
 	count = malloc(sizeof(int) * (max + 1));
+	if (!max || !count || !sorted)
+		return;
 	for (j = 0; j < max + 1; j++)
 		count[j] = 0;
 	for (i = 0; i < size; i++) /* count occurunces */
@@ -29,7 +29,7 @@ void counting_sort(int *array, size_t size)
 		sorted[count[array[i]] - 1] = array[i];
 		count[array[i]]--;
 	}
-	sorted[count[array[i]]] = array[i];
+	sorted[count[array[i]] - 1] = array[i];
 	count[array[i]]--;
 	for (i = 0; i < size; i++)
 		array[i] = sorted[i];
